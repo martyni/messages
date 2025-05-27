@@ -41,6 +41,7 @@ run_test () {
 all_tests_pass () {
   echo -e ${GREEN} All tests passed ${NO_COLOUR}
   cd $ORIGINAL_DIR
+  ${RUN_DIR}/increment.sh && ${RUN_DIR}/build.sh
   exit 0
 }
 
