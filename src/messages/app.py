@@ -36,6 +36,25 @@ class Message(db.Model):  # pylint: disable=too-few-public-methods
         }
 
 
+@app.route('/messages', methods=['GET'])
+def get_paginated_messages():
+    '''Return paginated messages based on page and per_page values'''
+    page = int(request.args.get('page')) if request.args.get('page') else 1
+    per_page = int(request.args.get('per_page')
+                   ) if request.args.get('per_page') else 5
+    messages = Message.query.order_by(Message.date.desc()) \
+        .paginate(page=page,
+                  per_page=per_page,
+                  error_out=False)
+    return jsonify({
+        "messages": [msg.to_dict() for msg in messages.items],
+        "total": messages.total,
+        "page": messages.page,
+        "pages": messages.pages,
+        "next_page": f'/messages?page={ page + 1 }&per_page={ per_page }'
+    }), 200
+
+
 @app.route('/message', methods=['POST'])
 def receive_message():
     '''URL for recieving messages'''
@@ -61,6 +80,7 @@ def main():
     with app.app_context():
         db.create_all()
     app.run(host='0.0.0.0', debug=True)
+
 
 if __name__ == '__main__':
     main()

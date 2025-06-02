@@ -1,5 +1,5 @@
 '''
-   Default test for Boilerplate App 
+   Default test for Boilerplate App
 '''
 
 from my_app.app import main

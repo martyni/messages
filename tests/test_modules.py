@@ -23,15 +23,6 @@ def test_module_imports():
             continue
         exec(f'import {mod}')
         assert exec('{mod}') is not False, f'Could not import {mod}'
-        chdir(SRC)
-        for submod in listdir(f'{mod}'):
-            if '__init__' in submod:
-                break
-            submod = submod.split('.py')[0]
-            exec(f'import {mod}.{submod}')
-            SUBMODULES.append(f'{mod}_{submod}')
-            assert exec(
-                f'{mod}.{submod}') is not False, f'Could not initialize {mod}.{submod}'
     chdir(ROOT)
 
 

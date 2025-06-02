@@ -1,12 +1,13 @@
 #!/bin/bash -x
-source $(git rev-parse --show-toplevel)/scripts/common.sh
+source scripts/common.sh
 
-DOCKER_REPO=$(cat ${RUN_DIR}/DOCKER_REPO)
-NAME="${DOCKER_REPO}/$(cat ${RUN_DIR}/NAME)"
-VERSION=$(cat ${RUN_DIR}/VERSION)
-BUILD_EXIT_FILE=/tmp/build_exit_code
-BUILD_OUTPUT=/tmp/build_output
-COMMAND="docker run ${NAME}:${VERSION}"
+#DOCKER_REPO=$(cat ${RUN_DIR}/DOCKER_REPO)
+#NAME="${DOCKER_REPO}/$(cat ${RUN_DIR}/NAME)"
+#VERSION=$(cat ${RUN_DIR}/VERSION)
+#BUILD_EXIT_FILE=/tmp/build_exit_code
+#BUILD_OUTPUT=/tmp/build_output
+#DOCKER_FLAGS=$(cat ${RUN_DIR}/DOCKER_FLAGS)
+#COMMAND="docker run ${DOCKER_FLAGS} ${NAME}:${VERSION}"
 
 if [[ ${PIPELINE} ]]; then
    #Capture docker exit status or fail with status 1 if build fails
