@@ -44,7 +44,7 @@ all_tests_pass () {
   FAILED=$(grep fail ${OUTPUT_FILE}) 
   if [ -z ${FAILED} ]; then
   	echo -e ${GREEN} All tests passed ${NO_COLOUR}
-  	${RUN_DIR}/increment.sh && ${RUN_DIR}/build.sh
+  	${RUN_DIR}/increment.sh && ${RUN_DIR}/build.sh && ${RUN_DIR}/install.sh
   	exit 0
   else
   	exit 1
