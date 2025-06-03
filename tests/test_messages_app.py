@@ -16,12 +16,14 @@ def __random_string(length=32):
 
 def test_request_example(client=C):
     '''Checks message field in response data'''
+    test_json_returned()
     response = client.get("/messages")
     assert b"message" in response.data
 
 
 def test_request_json(client=C):
     '''Checks json formatting of message'''
+    test_json_returned()
     response = client.get("/messages")
     assert response.json["messages"]
 
