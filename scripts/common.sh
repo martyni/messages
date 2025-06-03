@@ -9,7 +9,7 @@ else
     NO_COLOUR='\033[0m'
 fi
 
-RUN_DIR=$(dirname $0)
+RUN_DIR=$(realpath $(dirname $0))
 BUILD_EXIT_FILE=/tmp/build_exit_code
 BUILD_OUTPUT=/tmp/build_output
 DOCKER_FLAGS=$(cat ${RUN_DIR}/DOCKER_FLAGS)
@@ -17,6 +17,8 @@ DOCKER_REPO=$(cat ${RUN_DIR}/DOCKER_REPO)
 NAME=$(cat ${RUN_DIR}/NAME)
 FULL_NAME="${DOCKER_REPO}/$(cat ${RUN_DIR}/NAME)"
 VERSION=$(cat ${RUN_DIR}/VERSION)
+DESCRIPTION=$(cat ${RUN_DIR}/DESCRIPTION)
+DOMAIN=$(cat ${RUN_DIR}/DOMAIN)
 COMMAND="docker run ${DOCKER_FLAGS} ${NAME}:${VERSION}"
 CONTAINER=$(docker run ${DOCKER_FLAGS} ${DOCKER_REPO}/${NAME}:${VERSION}|| (echo "fail to start container\n" >>${OUTPUT}))
 CURRENT_TEST=None
