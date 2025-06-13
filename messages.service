@@ -1,0 +1,12 @@
+[Unit]
+Description=Simple python flask service for storing messages and retrieving messages.
+After=network.target
+StartLimitIntervalSec=0
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=martyni
+ExecStart=/home/martyni/repos/messages_env/bin/gunicorn --certfile=/tmp/askmartyn.com.crt --keyfile=askmartyn.com.key --bind 0.0.0.0:443 messages.app:app
+[Install]
+WantedBy=multi-user.target

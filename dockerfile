@@ -10,7 +10,7 @@ COPY src /home/app/src
 RUN echo "#!/bin/bash">>/bin/entrypoint.sh
 RUN cat /home/app/scripts/NAME>>/bin/entrypoint.sh
 RUN chmod +x /bin/entrypoint.sh
-RUN pip install /home/app #&& rm -rf /home/app/*
+RUN pip install /home/app 
 WORKDIR /home/app
-#USER app
+USER app
 CMD ["/bin/entrypoint.sh"]
